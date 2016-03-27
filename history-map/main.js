@@ -18,6 +18,8 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(mapLayer);
 
 function update(data) {
+    var listData = data.toList();
+
     // とりあえずしぇあひるずにmarker & popupを置いてみる
     var marker = L.marker([HOME_LAT, HOME_LNG]).addTo(mapLayer);
 
