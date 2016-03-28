@@ -14,23 +14,24 @@
 }
 
 .left-box {
-	width: 50%;
+	width: 120px;
 	float: left;
+	margin-right: 10px;
 }
 
 .right-box {
-	width: 50%;
-	float: left;
+	width: 120px;
+	float: right;
 }
 
 .old-picture, .now-picture {
-	max-width: 80px;
-	max-height: 80px;
+	width: 120px;
 }
 
 .address {
 	font-size: 65%;
 	margin-top: 5px;
+	clear: both;
 }
 
 

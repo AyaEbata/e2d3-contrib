@@ -21,16 +21,11 @@ function update(data) {
     var listData = data.toList();
 
     listData.forEach(function(spot) {
-        var popupText = '<div class="spot">' + spot[data[0][0]] + '</div>'
-                + '<div class="description">' + spot[data[0][2]] + '</div>'
-                + '<div class="pict-box">'
-                + '<div class="left-box"><div>昔の写真</div><img class="old-picture" src="' + spot[data[0][3]] + '"></div>'
-                + '<div class="right-box"><div>今の写真</div><img class="now-picture" src="' + spot[data[0][4]] + '"></div>'
-                + '</div>'
-                + '<div class="address">' + spot[data[0][1]] + '</div>';
+        var popup = L.marker([spot[data[0][5]], spot[data[0][6]]])
+          .addTo(mapLayer);
 
-        L.marker([spot[data[0][5]], spot[data[0][6]]])
-          .addTo(mapLayer)
-          .bindPopup(popupText);
+        popup.on('click', function() {
+            console.log(spot[data[0][0]]);
+        });
     });
 }
