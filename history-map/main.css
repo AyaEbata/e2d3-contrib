@@ -1,3 +1,39 @@
+/* custom */
+.spot {
+	font-size: 130%;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.description {
+	margin-bottom: 10px;
+}
+
+.pict-box {
+	width: 250px;
+}
+
+.left-box {
+	width: 50%;
+	float: left;
+}
+
+.right-box {
+	width: 50%;
+	float: left;
+}
+
+.old-picture, .now-picture {
+	max-width: 80px;
+	max-height: 80px;
+}
+
+.address {
+	font-size: 65%;
+	margin-top: 5px;
+}
+
+
 /* required styles */
 
 .leaflet-map-pane,
