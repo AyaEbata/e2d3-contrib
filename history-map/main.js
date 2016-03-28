@@ -20,13 +20,9 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 function update(data) {
     var listData = data.toList();
 
-    // とりあえずしぇあひるずにmarker & popupを置いてみる
-    L.marker([HOME_LAT, HOME_LNG])
-      .addTo(mapLayer)
-      .bindPopup('しぇあひるず');
-
-    L.marker([35.4748895, 139.626052])
-      .addTo(mapLayer)
-      .bindPopup('カメヤ食堂');
-
+    listData.forEach(function(spot) {
+        L.marker([spot['緯度'], spot['経度']])
+          .addTo(mapLayer)
+          .bindPopup(spot['史跡等の名称']);
+    });
 }
