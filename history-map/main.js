@@ -21,12 +21,7 @@ function update(data) {
     var listData = data.toList();
 
     // とりあえずしぇあひるずにmarker & popupを置いてみる
-    var marker = L.marker([HOME_LAT, HOME_LNG]).addTo(mapLayer);
-
-    marker.on('click', function() {
-        L.popup({offset: [0, -20]})
-          .setLatLng([HOME_LAT, HOME_LNG])
-          .setContent("I am a standalone popup.")
-          .openOn(mapLayer);
-    });
+    L.marker([HOME_LAT, HOME_LNG])
+      .addTo(mapLayer)
+      .bindPopup('I am a standalone popup.');
 }
