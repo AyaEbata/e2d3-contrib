@@ -21,8 +21,8 @@ function update(data) {
     var listData = data.toList();
 
     listData.forEach(function(spot) {
-        L.marker([spot['緯度'], spot['経度']])
+        L.marker([spot[data[0][5]], spot[data[0][6]]])
           .addTo(mapLayer)
-          .bindPopup(spot['史跡等の名称']);
+          .bindPopup(spot[data[0][0]]);
     });
 }
