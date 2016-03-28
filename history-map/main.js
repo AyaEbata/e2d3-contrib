@@ -23,5 +23,10 @@ function update(data) {
     // とりあえずしぇあひるずにmarker & popupを置いてみる
     L.marker([HOME_LAT, HOME_LNG])
       .addTo(mapLayer)
-      .bindPopup('I am a standalone popup.');
+      .bindPopup('しぇあひるず');
+
+    L.marker([35.4748895, 139.626052])
+      .addTo(mapLayer)
+      .bindPopup('カメヤ食堂');
+
 }
