@@ -1,11 +1,13 @@
 /* custom */
+
 #modal-content {
-	padding: 10px 10px;
+	padding: 40px;
 	background: #fff;
 	z-index: 2;
 	position: fixed;
 	top: 40px;
 	left: 40px;
+	text-align: left;
 }
 
 #modal-overlay {
@@ -26,6 +28,21 @@
 	font-size: 180%;
 	cursor: pointer;
 }
+
+#spot {
+	font-size: 180%;
+	font-weight: bold;
+}
+
+#description {
+	margin-bottom: 20px;
+}
+
+#address {
+	position: absolute;
+	bottom: 40px;
+}
+
 
 /* required styles */
 
