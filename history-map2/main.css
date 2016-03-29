@@ -8,6 +8,7 @@
 	top: 40px;
 	left: 40px;
 	text-align: left;
+	animation: fadein-content 0.3s;
 }
 
 #modal-overlay {
@@ -19,6 +20,25 @@
 	height: 100%;
 	background-color: black;
 	opacity: 0.55;
+	animation: fadein-overlay 0.3s;
+}
+
+@keyframes fadein-content {
+	0%{
+		opacity:0;
+	}
+	100% {
+		opacity:1;
+	}
+}
+
+@keyframes fadein-overlay {
+	0%{
+		opacity:0;
+	}
+	100% {
+		opacity:0.55;
+	}
 }
 
 #close-button {
