@@ -25,7 +25,28 @@ function update(data) {
           .addTo(mapLayer);
 
         popup.on('click', function() {
-            console.log(spot[data[0][0]]);
+            d3.select(root)
+              .append('div')
+              .attr('id', 'modal-content')
+              .style({
+                  'width': root.clientWidth - 100 + 'px',
+                  'height': root.clientHeight - 100 + 'px'
+              })
+              .text(spot[data[0][0]])
+              .append('div')
+              .attr('id', 'close-button')
+              .text('×')
+              .on('click', function() {
+                  d3.select('#modal-content')
+                    .remove()
+
+                  d3.select('#modal-overlay')
+                    .remove()
+              })
+
+            d3.select(root)
+              .append('div')
+              .attr('id', 'modal-overlay')
         });
     });
 }

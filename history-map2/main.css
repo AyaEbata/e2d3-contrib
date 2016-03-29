@@ -1,24 +1,30 @@
 /* custom */
-.modal-content {
-	width: 50%;
+#modal-content {
 	padding: 10px 10px;
-	border: 1.5px solid #aaa;
 	background: #fff;
 	z-index: 2;
 	position: fixed;
-	top: 30px;
-	left: 30px;
+	top: 40px;
+	left: 40px;
 }
 
-.modal-overlay {
+#modal-overlay {
 	z-index: 1;
-	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.70);
+	background-color: black;
+	opacity: 0.5;
+}
+
+#close-button {
+	position: absolute;
+	top: 0;
+	right: 12px;
+	font-size: 180%;
+	cursor: pointer;
 }
 
 /* required styles */
