@@ -31,71 +31,73 @@ function update(data) {
     var listData = data.toList();
 
     listData.forEach(function(spot) {
-        var popup = L.marker([spot[LAT_LABEL], spot[LNG_LABEL]])
+        var marker = L.marker([spot[LAT_LABEL], spot[LNG_LABEL]])
           .addTo(mapLayer)
           .bindPopup(spot[SPOT_NAME_LABEL]);
 
-        popup.on('click', function() {
+        marker.on('click', function() {
+            d3.select('.leaflet-popup-content').on('click', function() {
 
-            var modalContent = d3.select(root)
-              .append('div')
-              .attr('id', 'modal-content')
-              .style({
-                  'width': root.clientWidth - 160 + 'px',
-                  'height': root.clientHeight - 160 + 'px'
-              })
+                var modalContent = d3.select(root)
+                  .append('div')
+                  .attr('id', 'modal-content')
+                  .style({
+                      'width': root.clientWidth - 160 + 'px',
+                      'height': root.clientHeight - 160 + 'px'
+                  })
 
-            modalContent
-              .append('div')
-              .attr('id', 'spot')
-              .text(spot[SPOT_NAME_LABEL])
+                modalContent
+                  .append('div')
+                  .attr('id', 'spot')
+                  .text(spot[SPOT_NAME_LABEL])
 
-            modalContent
-              .append('div')
-              .attr('id', 'description')
-              .text(spot[DESCRIPTION_LABEL])
+                modalContent
+                  .append('div')
+                  .attr('id', 'description')
+                  .text(spot[DESCRIPTION_LABEL])
 
-            modalContent
-              .append('div')
-              .attr('id', 'address')
-              .text(spot[ADDRESS_LABEL])
+                modalContent
+                  .append('div')
+                  .attr('id', 'address')
+                  .text(spot[ADDRESS_LABEL])
 
-            var pictContainerWidth = (root.clientWidth - 180) * 0.5 + 'px';
-            var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 190 + 'px';
+                var pictContainerWidth = (root.clientWidth - 180) * 0.5 + 'px';
+                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 190 + 'px';
 
-            modalContent
-              .append('img')
-              .attr('id', 'picture1')
-              .attr('src', spot[PICT1_LABEL])
-              .style({
-                  'max-width': pictContainerWidth,
-                  'max-height': pictContainerHeight,
-                  'margin-right': '20px'
-              })
+                modalContent
+                  .append('img')
+                  .attr('id', 'picture1')
+                  .attr('src', spot[PICT1_LABEL])
+                  .style({
+                      'max-width': pictContainerWidth,
+                      'max-height': pictContainerHeight,
+                      'margin-right': '20px'
+                  })
 
-            modalContent
-              .append('img')
-              .attr('id', 'picture2')
-              .attr('src', spot[PICT2_LABEL])
-              .style({
-                  'max-width': pictContainerWidth,
-                  'max-height': pictContainerHeight
-              })
+                modalContent
+                  .append('img')
+                  .attr('id', 'picture2')
+                  .attr('src', spot[PICT2_LABEL])
+                  .style({
+                      'max-width': pictContainerWidth,
+                      'max-height': pictContainerHeight
+                  })
 
-            modalContent
-              .append('div')
-              .attr('id', 'close-button')
-              .text('×')
-              .on('click', function() {
-                  d3.select('#modal-content')
-                    .remove()
-                  d3.select('#modal-overlay')
-                    .remove()
-              })
+                modalContent
+                  .append('div')
+                  .attr('id', 'close-button')
+                  .text('×')
+                  .on('click', function() {
+                      d3.select('#modal-content')
+                        .remove()
+                      d3.select('#modal-overlay')
+                        .remove()
+                  })
 
-            d3.select(root)
-              .append('div')
-              .attr('id', 'modal-overlay')
+                d3.select(root)
+                  .append('div')
+                  .attr('id', 'modal-overlay')
+            })
         });
     });
 }
