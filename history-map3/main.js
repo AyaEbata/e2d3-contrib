@@ -74,8 +74,9 @@ function update(data) {
                       'bottom': modalPadding + 'px'
                   })
 
-                var pictContainerWidth = (root.clientWidth - 20 - (modalPadding * 2)) * 0.5 + 'px';
-                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 30 - (modalPadding * 2) + 'px';
+                var pictMargin = 20;
+                var pictContainerWidth = (root.clientWidth - pictMargin - (modalPadding * 2)) * 0.5 + 'px';
+                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 10 - pictMargin - (modalPadding * 2) + 'px';
 
                 modalContent
                   .append('img')
@@ -84,7 +85,7 @@ function update(data) {
                   .style({
                       'max-width': pictContainerWidth,
                       'max-height': pictContainerHeight,
-                      'margin-right': '20px'
+                      'margin-right': pictMargin + 'px'
                   })
 
                 modalContent
