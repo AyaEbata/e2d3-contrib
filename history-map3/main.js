@@ -8,7 +8,10 @@ d3.select(root)
   .attr('id', 'map-container')
 
 d3.select('#map-container')
-  .style('height', root.clientHeight + 'px')
+  .style({
+      'height': root.clientHeight + 'px',
+      'width': root.clientWidth + 'px'
+  })
 
 // しぇあひるずを中心に表示  setView([緯度, 経度], ズーム)
 var mapLayer = L.map('map-container').setView([HOME_LAT, HOME_LNG], 15);
@@ -38,12 +41,18 @@ function update(data) {
         marker.on('click', function() {
             d3.select('.leaflet-popup-content').on('click', function() {
 
+                d3.select('.leaflet-control')
+                  .style('display', 'none')
+
+                var modalPadding = root.clientHeight / 20;
+
                 var modalContent = d3.select(root)
                   .append('div')
                   .attr('id', 'modal-content')
                   .style({
-                      'width': root.clientWidth - 160 + 'px',
-                      'height': root.clientHeight - 160 + 'px'
+                      'padding': modalPadding + 'px',
+                      'width': root.clientWidth - (modalPadding * 2) + 'px',
+                      'height': root.clientHeight - (modalPadding * 2) + 'px'
                   })
 
                 modalContent
@@ -60,9 +69,13 @@ function update(data) {
                   .append('div')
                   .attr('id', 'address')
                   .text(spot[ADDRESS_LABEL])
+                  .style({
+                      'position': 'absolute',
+                      'bottom': modalPadding + 'px'
+                  })
 
-                var pictContainerWidth = (root.clientWidth - 180) * 0.5 + 'px';
-                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 190 + 'px';
+                var pictContainerWidth = (root.clientWidth - 20 - (modalPadding * 2)) * 0.5 + 'px';
+                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 30 - (modalPadding * 2) + 'px';
 
                 modalContent
                   .append('img')
@@ -92,6 +105,9 @@ function update(data) {
                         .remove()
                       d3.select('#modal-overlay')
                         .remove()
+
+                      d3.select('.leaflet-control')
+                        .style('display', 'block')
                   })
 
                 d3.select(root)
