@@ -75,17 +75,22 @@ function update(data) {
                   })
 
                 var pictMargin = 20;
-                var pictContainerWidth = (root.clientWidth - pictMargin - (modalPadding * 2)) * 0.5 + 'px';
-                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 10 - pictMargin - (modalPadding * 2) + 'px';
+                var pictContainerWidth = (root.clientWidth - (modalPadding * 2) - pictMargin) * 0.5;
+                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 50 - (modalPadding * 2);
+       
+                var magnification = 1;
+                if (spot[PICT3_LABEL] !== '' && spot[PICT4_LABEL] !== '') {
+                    magnification = 0.75;
+                }
 
                 modalContent
                   .append('img')
                   .attr('id', 'picture1')
                   .attr('src', spot[PICT1_LABEL])
                   .style({
-                      'max-width': pictContainerWidth,
-                      'max-height': pictContainerHeight,
-                      'margin-right': pictMargin + 'px'
+                      'max-width': pictContainerWidth + 'px',
+                      'max-height': pictContainerHeight * magnification + 'px',
+                      'margin-right': pictMargin + 'px',
                   })
 
                 modalContent
@@ -93,8 +98,33 @@ function update(data) {
                   .attr('id', 'picture2')
                   .attr('src', spot[PICT2_LABEL])
                   .style({
-                      'max-width': pictContainerWidth,
-                      'max-height': pictContainerHeight
+                      'max-width': pictContainerWidth + 'px',
+                      'max-height': pictContainerHeight * magnification + 'px'
+                  })
+
+                var pictBox = modalContent
+                  .append('div')
+                  .attr('id', 'pict-box')
+
+                pictBox
+                  .append('img')
+                  .attr('id', 'picture3')
+                  .attr('src', spot[PICT3_LABEL])
+                  .style({
+                      'max-width': pictContainerWidth + 'px',
+                      'max-height': pictContainerHeight * 0.25 + 'px',
+                      'margin-right': pictMargin + 'px',
+                      'margin-top': '10px'
+                  })
+
+                pictBox
+                  .append('img')
+                  .attr('id', 'picture4')
+                  .attr('src', spot[PICT4_LABEL])
+                  .style({
+                      'max-width': pictContainerWidth + 'px',
+                      'max-height': pictContainerHeight * 0.25 + 'px',
+                      'margin-top': '10px'
                   })
 
                 modalContent

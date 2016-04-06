@@ -59,6 +59,10 @@
 	margin-bottom: 20px;
 }
 
+.leaflet-popup-content {
+	cursor: pointer;
+}
+
 
 /* required styles */
 
