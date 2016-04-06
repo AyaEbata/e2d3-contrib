@@ -127,7 +127,6 @@ function update(data) {
                               .style({
                                   'left': (root.clientWidth - width) / 2 + 10 + 'px'
                               })
-
                         })
                         .on('click', function() {
                             d3.select('#preview-area')

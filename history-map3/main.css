@@ -8,7 +8,7 @@
 	left: 0;
 	text-align: left;
 	color: white;
-	animation: fadein-content 0.45s;
+	animation: fadein-content 0.7s ease-out;
 }
 
 #modal-overlay {
@@ -20,7 +20,7 @@
 	height: 100%;
 	background-color: black;
 	opacity: 0.9;
-	animation: fadein-overlay 0.45s;
+	animation: fadein-overlay 0.45s ease-out;
 }
 
 @keyframes fadein-content {
@@ -51,7 +51,7 @@
 }
 
 #spot {
-	font-size: 180%;
+	font-size: 200%;
 	font-weight: bold;
 }
 
@@ -59,7 +59,7 @@
 	margin-bottom: 20px;
 }
 
-.leaflet-popup-content {
+.leaflet-popup-content, img[id^="picture"], #pict-preview {
 	cursor: pointer;
 }
 
@@ -70,12 +70,14 @@
 	z-index: 4;
 	font-size: 80%;
 	padding: 0 10px;
+	animation: fadein-pict-preview 0.65s;
 }
 
 #pict-preview {
 	position: fixed;
 	top: 30px;
 	z-index: 5;
+	animation: fadein-pict-preview 0.65s;
 }
 
 #pict-overlay {
@@ -87,6 +89,25 @@
 	height: 100%;
 	background-color: black;
 	opacity: 0.8;
+	animation: fadein-pict-overlay 0.65s  ease-out;
+}
+
+@keyframes fadein-pict-preview {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadein-pict-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.8;
+	}
 }
 
 
