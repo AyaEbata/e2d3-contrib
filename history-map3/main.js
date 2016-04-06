@@ -92,6 +92,52 @@ function update(data) {
                       'max-height': pictContainerHeight * magnification + 'px',
                       'margin-right': pictMargin + 'px',
                   })
+                  .on('click', function() {
+
+                      d3.select(root)
+                        .append('div')
+                        .attr('id', 'pict-overlay')
+
+                      d3.select(root)
+                        .append('div')
+                        .attr('id', 'preview-area')
+                        .text('click the picture to close')
+
+                      d3.select(root)
+                        .append('img')
+                        .attr('id', 'pict-preview')
+                        .attr('src', spot[PICT1_LABEL])
+                        .style({
+                            'max-width': root.clientWidth + 'px',
+                            'max-height': root.clientHeight - 50 + 'px'
+                        })
+                        .on('load', function() {
+                            var width = d3.select('#pict-preview')
+                              .style('width')
+                              .slice(0, -2)
+
+                            d3.select('#preview-area')
+                              .style({
+                                  'width': width + 20 + 'px',
+                                  'height': root.clientHeight - 20 + 'px',
+                                  'left': (root.clientWidth - (width + 20)) / 2 + 'px'
+                              })
+
+                            d3.select('#pict-preview')
+                              .style({
+                                  'left': (root.clientWidth - width) / 2 + 10 + 'px'
+                              })
+
+                        })
+                        .on('click', function() {
+                            d3.select('#preview-area')
+                              .remove()
+                            d3.select('#pict-preview')
+                              .remove()
+                            d3.select('#pict-overlay')
+                              .remove()
+                        })                  
+                  })
 
                 modalContent
                   .append('img')
