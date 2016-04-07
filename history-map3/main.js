@@ -93,49 +93,7 @@ function update(data) {
                       'margin-right': pictMargin + 'px',
                   })
                   .on('click', function() {
-
-                      d3.select(root)
-                        .append('div')
-                        .attr('id', 'pict-overlay')
-
-                      d3.select(root)
-                        .append('div')
-                        .attr('id', 'preview-area')
-                        .text('click the picture to close')
-
-                      d3.select(root)
-                        .append('img')
-                        .attr('id', 'pict-preview')
-                        .attr('src', spot[PICT1_LABEL])
-                        .style({
-                            'max-width': root.clientWidth + 'px',
-                            'max-height': root.clientHeight - 50 + 'px'
-                        })
-                        .on('load', function() {
-                            var width = d3.select('#pict-preview')
-                              .style('width')
-                              .slice(0, -2)
-
-                            d3.select('#preview-area')
-                              .style({
-                                  'width': width + 20 + 'px',
-                                  'height': root.clientHeight - 20 + 'px',
-                                  'left': (root.clientWidth - (width + 20)) / 2 + 'px'
-                              })
-
-                            d3.select('#pict-preview')
-                              .style({
-                                  'left': (root.clientWidth - width) / 2 + 10 + 'px'
-                              })
-                        })
-                        .on('click', function() {
-                            d3.select('#preview-area')
-                              .remove()
-                            d3.select('#pict-preview')
-                              .remove()
-                            d3.select('#pict-overlay')
-                              .remove()
-                        })                  
+                      createPictPreview(spot[PICT1_LABEL]);
                   })
 
                 modalContent
@@ -145,6 +103,9 @@ function update(data) {
                   .style({
                       'max-width': pictContainerWidth + 'px',
                       'max-height': pictContainerHeight * magnification + 'px'
+                  })
+                  .on('click', function() {
+                      createPictPreview(spot[PICT2_LABEL]);
                   })
 
                 var pictBox = modalContent
@@ -161,6 +122,9 @@ function update(data) {
                       'margin-right': pictMargin + 'px',
                       'margin-top': '10px'
                   })
+                  .on('click', function() {
+                      createPictPreview(spot[PICT3_LABEL]);
+                  })
 
                 pictBox
                   .append('img')
@@ -170,6 +134,9 @@ function update(data) {
                       'max-width': pictContainerWidth + 'px',
                       'max-height': pictContainerHeight * 0.25 + 'px',
                       'margin-top': '10px'
+                  })
+                  .on('click', function() {
+                      createPictPreview(spot[PICT4_LABEL]);
                   })
 
                 modalContent
@@ -192,4 +159,49 @@ function update(data) {
             })
         });
     });
+}
+
+function createPictPreview(picture) {
+    d3.select(root)
+      .append('div')
+      .attr('id', 'pict-overlay')
+
+    d3.select(root)
+      .append('div')
+      .attr('id', 'preview-area')
+      .text('click the picture to close')
+
+    d3.select(root)
+      .append('img')
+      .attr('id', 'pict-preview')
+      .attr('src', picture)
+      .style({
+          'max-width': root.clientWidth + 'px',
+          'max-height': root.clientHeight - 50 + 'px'
+      })
+      .on('load', function() {
+          var width = d3.select('#pict-preview')
+            .style('width')
+            .slice(0, -2)
+
+          d3.select('#preview-area')
+            .style({
+                'width': width + 20 + 'px',
+                'height': root.clientHeight - 20 + 'px',
+                'left': (root.clientWidth - (width + 20)) / 2 + 'px'
+            })
+
+          d3.select('#pict-preview')
+            .style({
+                'left': (root.clientWidth - width) / 2 + 10 + 'px'
+            })
+      })
+      .on('click', function() {
+          d3.select('#preview-area')
+            .remove()
+          d3.select('#pict-preview')
+            .remove()
+          d3.select('#pict-overlay')
+            .remove()
+      })
 }
