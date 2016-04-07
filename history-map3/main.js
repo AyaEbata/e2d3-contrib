@@ -161,6 +161,10 @@ function update(data) {
     });
 }
 
+function createContents() {
+  // ここに移動させる予定
+}
+
 function createPictPreview(picture) {
     d3.select(root)
       .append('div')
@@ -176,25 +180,48 @@ function createPictPreview(picture) {
       .attr('id', 'pict-preview')
       .attr('src', picture)
       .style({
-          'max-width': root.clientWidth + 'px',
+          'max-width': root.clientWidth - 40 + 'px',
           'max-height': root.clientHeight - 50 + 'px'
       })
       .on('load', function() {
-          var width = d3.select('#pict-preview')
-            .style('width')
-            .slice(0, -2)
+          var width = parseInt(
+              d3.select('#pict-preview')
+                .style('width')
+                .slice(0, -2)
+              )
 
-          d3.select('#preview-area')
-            .style({
-                'width': width + 20 + 'px',
-                'height': root.clientHeight - 20 + 'px',
-                'left': (root.clientWidth - (width + 20)) / 2 + 'px'
-            })
+          var height = parseInt(
+              d3.select('#pict-preview')
+                .style('height')
+                .slice(0, -2)
+              )
 
-          d3.select('#pict-preview')
-            .style({
-                'left': (root.clientWidth - width) / 2 + 10 + 'px'
-            })
+          if (width == root.clientWidth - 40) {
+              d3.select('#preview-area')
+                .style({
+                    'width': root.clientWidth - 40 + 'px',
+                    'height': height + 30 + 'px',
+                    'top': (root.clientHeight - height - 20) / 2 + 'px'
+                })
+
+              d3.select('#pict-preview')
+                .style({
+                    'top': (root.clientHeight - height) / 2 + 10 + 'px'
+                })
+
+          } else {
+              d3.select('#preview-area')
+                .style({
+                    'width': width + 'px',
+                    'height': root.clientHeight - 20 + 'px',
+                    'left': (root.clientWidth - width - 20) / 2 + 'px'
+                })
+
+              d3.select('#pict-preview')
+                .style({
+                    'left': (root.clientWidth - width) / 2 + 'px'
+                })
+          }
       })
       .on('click', function() {
           d3.select('#preview-area')
