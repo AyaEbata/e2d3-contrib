@@ -184,16 +184,14 @@ function createPictPreview(picture) {
           'max-height': root.clientHeight - 50 + 'px'
       })
       .on('load', function() {
-          var width = parseInt(
+          var width = parseFloat(
               d3.select('#pict-preview')
                 .style('width')
-                .slice(0, -2)
               )
 
-          var height = parseInt(
+          var height = parseFloat(
               d3.select('#pict-preview')
                 .style('height')
-                .slice(0, -2)
               )
 
           if (width == root.clientWidth - 40) {
