@@ -22,14 +22,8 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 function update(data) {
     const SPOT_NAME_LABEL = data[0][0];
-    const ADDRESS_LABEL = data[0][1];
-    const DESCRIPTION_LABEL = data[0][2];
     const LAT_LABEL = data[0][3];
     const LNG_LABEL = data[0][4];
-    const PICT1_LABEL = data[0][5];
-    const PICT2_LABEL = data[0][6];
-    const PICT3_LABEL = data[0][7];
-    const PICT4_LABEL = data[0][8];
 
     var listData = data.toList();
 
@@ -44,125 +38,132 @@ function update(data) {
                 d3.select('.leaflet-control')
                   .style('display', 'none')
 
-                var modalPadding = root.clientHeight / 20;
-
-                var modalContent = d3.select(root)
-                  .append('div')
-                  .attr('id', 'modal-content')
-                  .style({
-                      'padding': modalPadding + 'px',
-                      'width': root.clientWidth - (modalPadding * 2) + 'px',
-                      'height': root.clientHeight - (modalPadding * 2) + 'px'
-                  })
-
-                modalContent
-                  .append('div')
-                  .attr('id', 'spot')
-                  .text(spot[SPOT_NAME_LABEL])
-
-                modalContent
-                  .append('div')
-                  .attr('id', 'description')
-                  .text(spot[DESCRIPTION_LABEL])
-
-                modalContent
-                  .append('div')
-                  .attr('id', 'address')
-                  .text(spot[ADDRESS_LABEL])
-                  .style({
-                      'position': 'absolute',
-                      'bottom': modalPadding + 'px'
-                  })
-
-                var pictMargin = 20;
-                var pictContainerWidth = (root.clientWidth - (modalPadding * 2) - pictMargin) * 0.5;
-                var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 50 - (modalPadding * 2);
-       
-                var magnification = 1;
-                if (spot[PICT3_LABEL] !== '' && spot[PICT4_LABEL] !== '') {
-                    magnification = 0.75;
-                }
-
-                modalContent
-                  .append('img')
-                  .attr('id', 'picture1')
-                  .attr('src', spot[PICT1_LABEL])
-                  .style({
-                      'max-width': pictContainerWidth + 'px',
-                      'max-height': pictContainerHeight * magnification + 'px',
-                      'margin-right': pictMargin + 'px',
-                  })
-                  .on('click', function() {
-                      createPictPreview(spot[PICT1_LABEL]);
-                  })
-
-                modalContent
-                  .append('img')
-                  .attr('id', 'picture2')
-                  .attr('src', spot[PICT2_LABEL])
-                  .style({
-                      'max-width': pictContainerWidth + 'px',
-                      'max-height': pictContainerHeight * magnification + 'px'
-                  })
-                  .on('click', function() {
-                      createPictPreview(spot[PICT2_LABEL]);
-                  })
-
-                var pictBox = modalContent
-                  .append('div')
-                  .attr('id', 'pict-box')
-
-                pictBox
-                  .append('img')
-                  .attr('id', 'picture3')
-                  .attr('src', spot[PICT3_LABEL])
-                  .style({
-                      'max-width': pictContainerWidth + 'px',
-                      'max-height': pictContainerHeight * 0.25 + 'px',
-                      'margin-right': pictMargin + 'px',
-                      'margin-top': '10px'
-                  })
-                  .on('click', function() {
-                      createPictPreview(spot[PICT3_LABEL]);
-                  })
-
-                pictBox
-                  .append('img')
-                  .attr('id', 'picture4')
-                  .attr('src', spot[PICT4_LABEL])
-                  .style({
-                      'max-width': pictContainerWidth + 'px',
-                      'max-height': pictContainerHeight * 0.25 + 'px',
-                      'margin-top': '10px'
-                  })
-                  .on('click', function() {
-                      createPictPreview(spot[PICT4_LABEL]);
-                  })
-
-                modalContent
-                  .append('div')
-                  .attr('id', 'close-button')
-                  .text('×')
-                  .on('click', function() {
-                      d3.select('#modal-content')
-                        .remove()
-                      d3.select('#modal-overlay')
-                        .remove()
-
-                      d3.select('.leaflet-control')
-                        .style('display', 'block')
-                  })
-
-                d3.select(root)
-                  .append('div')
-                  .attr('id', 'modal-overlay')
+                createContents(spot, data, SPOT_NAME_LABEL);
             })
         });
     });
 }
 
-function createContents() {
-  // ここに移動させる予定
+function createContents(spot, data, spotName) {
+    const ADDRESS_LABEL = data[0][1];
+    const DESCRIPTION_LABEL = data[0][2];
+    const PICT1_LABEL = data[0][5];
+    const PICT2_LABEL = data[0][6];
+    const PICT3_LABEL = data[0][7];
+    const PICT4_LABEL = data[0][8];
+
+    var modalPadding = root.clientHeight / 20;
+
+    var modalContent = d3.select(root)
+      .append('div')
+      .attr('id', 'modal-content')
+      .style({
+          'padding': modalPadding + 'px',
+          'width': root.clientWidth - (modalPadding * 2) + 'px',
+          'height': root.clientHeight - (modalPadding * 2) + 'px'
+      })
+
+    modalContent
+      .append('div')
+      .attr('id', 'spot')
+      .text(spot[spotName])
+
+    modalContent
+      .append('div')
+      .attr('id', 'description')
+      .text(spot[DESCRIPTION_LABEL])
+
+    modalContent
+      .append('div')
+      .attr('id', 'address')
+      .text(spot[ADDRESS_LABEL])
+      .style({
+          'position': 'absolute',
+          'bottom': modalPadding + 'px'
+      })
+
+    var pictMargin = 20;
+    var pictContainerWidth = (root.clientWidth - (modalPadding * 2) - pictMargin) * 0.5;
+    var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 50 - (modalPadding * 2);
+
+    var magnification = 1;
+    if (spot[PICT3_LABEL] !== '' && spot[PICT4_LABEL] !== '') {
+        magnification = 0.75;
+    }
+
+    modalContent
+      .append('img')
+      .attr('id', 'picture1')
+      .attr('src', spot[PICT1_LABEL])
+      .style({
+          'max-width': pictContainerWidth + 'px',
+          'max-height': pictContainerHeight * magnification + 'px',
+          'margin-right': pictMargin + 'px',
+      })
+      .on('click', function() {
+          createPictPreview(spot[PICT1_LABEL]);
+      })
+
+    modalContent
+      .append('img')
+      .attr('id', 'picture2')
+      .attr('src', spot[PICT2_LABEL])
+      .style({
+          'max-width': pictContainerWidth + 'px',
+          'max-height': pictContainerHeight * magnification + 'px'
+      })
+      .on('click', function() {
+          createPictPreview(spot[PICT2_LABEL]);
+      })
+
+    var pictBox = modalContent
+      .append('div')
+      .attr('id', 'pict-box')
+
+    pictBox
+      .append('img')
+      .attr('id', 'picture3')
+      .attr('src', spot[PICT3_LABEL])
+      .style({
+          'max-width': pictContainerWidth + 'px',
+          'max-height': pictContainerHeight * 0.25 + 'px',
+          'margin-right': pictMargin + 'px',
+          'margin-top': '10px'
+      })
+      .on('click', function() {
+          createPictPreview(spot[PICT3_LABEL]);
+      })
+
+    pictBox
+      .append('img')
+      .attr('id', 'picture4')
+      .attr('src', spot[PICT4_LABEL])
+      .style({
+          'max-width': pictContainerWidth + 'px',
+          'max-height': pictContainerHeight * 0.25 + 'px',
+          'margin-top': '10px'
+      })
+      .on('click', function() {
+          createPictPreview(spot[PICT4_LABEL]);
+      })
+
+    modalContent
+      .append('div')
+      .attr('id', 'close-button')
+      .text('×')
+      .on('click', function() {
+          d3.select('#modal-content')
+            .remove()
+          d3.select('#modal-overlay')
+            .remove()
+
+          d3.select('.leaflet-control')
+            .style('display', 'block')
+      })
+
+    d3.select(root)
+      .append('div')
+      .attr('id', 'modal-overlay')
 }
 
 function createPictPreview(picture) {

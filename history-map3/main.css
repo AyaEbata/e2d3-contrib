@@ -79,7 +79,7 @@
 	top: 30px;
 	left: 20px;
 	z-index: 5;
-	animation: fadein-pict-preview 0.65s;
+	animation: fadein-pict-preview 0.65s ease-out;
 }
 
 #pict-overlay {
@@ -91,7 +91,7 @@
 	height: 100%;
 	background-color: black;
 	opacity: 0.8;
-	animation: fadein-pict-overlay 0.65s  ease-out;
+	animation: fadein-pict-overlay 0.65s;
 }
 
 @keyframes fadein-pict-preview {
