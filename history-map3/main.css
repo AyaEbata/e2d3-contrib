@@ -8,7 +8,56 @@
 	left: 0;
 	text-align: left;
 	color: white;
+	-o-animation: fadein-content 0.65s ease-out;
+	-ms-animation: fadein-content 0.65s ease-out;
+	-moz-animation: fadein-content 0.65s ease-out;
+	-webkit-animation: fadein-content 0.65s ease-out;
 	animation: fadein-content 0.65s ease-out;
+}
+
+@-o-keyframes fadein-content {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes fadein-content {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadein-content {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadein-content {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadein-content {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 #modal-overlay {
@@ -20,15 +69,46 @@
 	height: 100%;
 	background-color: black;
 	opacity: 0.9;
+	-o-animation: fadein-overlay 0.3s;
+	-ms-animation: fadein-overlay 0.3s;
+	-moz-animation: fadein-overlay 0.3s;
+	-webkit-animation: fadein-overlay 0.3s;
 	animation: fadein-overlay 0.3s;
 }
 
-@keyframes fadein-content {
+@-o-keyframes fadein-overlay {
 	0%{
 		opacity: 0;
 	}
 	100% {
-		opacity: 1;
+		opacity: 0.9;
+	}
+}
+
+@-ms-keyframes fadein-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.9;
+	}
+}
+
+@-moz-keyframes fadein-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.9;
+	}
+}
+
+@-webkit-keyframes fadein-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.9;
 	}
 }
 
@@ -71,6 +151,10 @@
 	z-index: 4;
 	font-size: 80%;
 	padding: 0 10px;
+	-o-animation: fadein-pict-preview 0.65s;
+	-ms-animation: fadein-pict-preview 0.65s;
+	-moz-animation: fadein-pict-preview 0.65s;
+	-webkit-animation: fadein-pict-preview 0.65s;
 	animation: fadein-pict-preview 0.65s;
 }
 
@@ -79,7 +163,56 @@
 	top: 30px;
 	left: 20px;
 	z-index: 5;
+	-o-animation: fadein-pict-preview 0.65s ease-out;
+	-ms-animation: fadein-pict-preview 0.65s ease-out;
+	-moz-animation: fadein-pict-preview 0.65s ease-out;
+	-webkit-animation: fadein-pict-preview 0.65s ease-out;
 	animation: fadein-pict-preview 0.65s ease-out;
+}
+
+@-o-keyframes fadein-pict-preview {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes fadein-pict-preview {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadein-pict-preview {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadein-pict-preview {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadein-pict-preview {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 #pict-overlay {
@@ -91,15 +224,46 @@
 	height: 100%;
 	background-color: black;
 	opacity: 0.8;
+	-o-animation: fadein-pict-overlay 0.65s;
+	-ms-animation: fadein-pict-overlay 0.65s;
+	-moz-animation: fadein-pict-overlay 0.65s;
+	-webkit-animation: fadein-pict-overlay 0.65s;
 	animation: fadein-pict-overlay 0.65s;
 }
 
-@keyframes fadein-pict-preview {
+@-o-keyframes fadein-pict-overlay {
 	0%{
 		opacity: 0;
 	}
 	100% {
-		opacity: 1;
+		opacity: 0.8;
+	}
+}
+
+@-ms-keyframes fadein-pict-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.8;
+	}
+}
+
+@-moz-keyframes fadein-pict-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.8;
+	}
+}
+
+@-webkit-keyframes fadein-pict-overlay {
+	0%{
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.8;
 	}
 }
 
