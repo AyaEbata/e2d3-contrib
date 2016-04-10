@@ -1,4 +1,4 @@
-//# require=d3,leaflet
+//# require=d3,leaflet,es6-promise.min
 
 const HOME_LAT = 35.475846;
 const HOME_LNG = 139.628833;
@@ -91,30 +91,57 @@ function createContents(spot, data, spotName) {
         magnification = 0.75;
     }
 
-    modalContent
-      .append('img')
-      .attr('id', 'picture1')
-      .attr('src', spot[PICT1_LABEL])
-      .style({
-          'max-width': pictContainerWidth + 'px',
-          'max-height': pictContainerHeight * magnification + 'px',
-          'margin-right': pictMargin + 'px',
-      })
-      .on('click', function() {
-          createPictPreview(spot[PICT1_LABEL]);
-      })
+    var p1 = function() {
+        return new Promise(function(resolve) {
+            modalContent
+              .append('img')
+              .attr('id', 'picture1')
+              .attr('src', spot[PICT1_LABEL])
+              .style({
+                  'max-width': pictContainerWidth + 'px',
+                  'max-height': pictContainerHeight * magnification + 'px',
+                  'margin-right': pictMargin + 'px',
+              })
+              .on('click', function() {
+                  createPictPreview(spot[PICT1_LABEL]);
+              })
+              .on('load', function() {
+                  resolve(getPictSize(this));
+              })
+        })
+    };
 
-    modalContent
-      .append('img')
-      .attr('id', 'picture2')
-      .attr('src', spot[PICT2_LABEL])
-      .style({
-          'max-width': pictContainerWidth + 'px',
-          'max-height': pictContainerHeight * magnification + 'px'
-      })
-      .on('click', function() {
-          createPictPreview(spot[PICT2_LABEL]);
-      })
+    var p2 = function() {
+        return new Promise(function(resolve) {
+            modalContent
+              .append('img')
+              .attr('id', 'picture2')
+              .attr('src', spot[PICT2_LABEL])
+              .style({
+                  'max-width': pictContainerWidth + 'px',
+                  'max-height': pictContainerHeight * magnification + 'px'
+              })
+              .on('click', function() {
+                  createPictPreview(spot[PICT2_LABEL]);
+              })
+              .on('load', function() {
+                  resolve(getPictSize(this));
+              })
+        })
+    };
+
+    var getPictSize = function(this) {
+        var pictSize = { };
+        pictSize.width = parseFloat(d3.select(this).style('width'));
+        pictSize.height = parseFloat(d3.select(this).style('height'));
+        return pictSize;            
+    }
+
+    var tasks = [ p1(), p2() ];
+    Promise.all(tasks).then(function(results) {
+        // ここに処理書く
+        console.log(results);
+    });
 
     var pictBox = modalContent
       .append('div')
