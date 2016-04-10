@@ -86,11 +86,6 @@ function createContents(spot, data, spotName) {
     var pictContainerWidth = (root.clientWidth - (modalPadding * 2) - pictMargin) * 0.5;
     var pictContainerHeight = root.clientHeight - document.getElementById('spot').clientHeight - document.getElementById('description').clientHeight - document.getElementById('address').clientHeight - 50 - (modalPadding * 2);
 
-    // var magnification = 1;
-    // if (spot[PICT3_LABEL] !== '' && spot[PICT4_LABEL] !== '') {
-    //     magnification = 0.75;
-    // }
-
     var p1 = function() {
         return new Promise(function(resolve) {
             modalContent
@@ -132,8 +127,8 @@ function createContents(spot, data, spotName) {
 
     var getPictSize = function(self) {
         var pictSize = { };
-        pictSize.width = parseFloat(d3.select(self).style('width'));
-        pictSize.height = parseFloat(d3.select(self).style('height'));
+        pictSize.width = parseInt(d3.select(self).style('width'));
+        pictSize.height = parseInt(d3.select(self).style('height'));
         return pictSize;          
     }
 
@@ -188,8 +183,8 @@ function createContents(spot, data, spotName) {
     }
 
     var isPictWidthsMax = function(pictArray) {
-        return pictArray[0].width == pictContainerWidth 
-            && pictArray[1].width == pictContainerWidth;
+        return pictArray[0].width == parseInt(pictContainerWidth) 
+            && pictArray[1].width == parseInt(pictContainerWidth);
     }
 
     modalContent
@@ -230,17 +225,17 @@ function createPictPreview(picture) {
           'max-height': root.clientHeight - 50 + 'px'
       })
       .on('load', function() {
-          var width = parseFloat(
+          var width = parseInt(
               d3.select('#pict-preview')
                 .style('width')
               )
 
-          var height = parseFloat(
+          var height = parseInt(
               d3.select('#pict-preview')
                 .style('height')
               )
 
-          if (width == root.clientWidth - 40) {
+          if (width == parseInt(root.clientWidth) - 40) {
               d3.select('#preview-area')
                 .style({
                     'width': root.clientWidth - 40 + 'px',
