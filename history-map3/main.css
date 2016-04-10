@@ -143,6 +143,10 @@
 	cursor: pointer;
 }
 
+img[id^="picture"], #pict-box {
+	vertical-align: top;
+}
+
 #preview-area {
 	background-color: white;
 	position: fixed;
