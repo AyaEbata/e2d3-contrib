@@ -134,14 +134,8 @@ function createContents(spot, data, spotName) {
         var pictSize = { };
         pictSize.width = parseFloat(d3.select(this).style('width'));
         pictSize.height = parseFloat(d3.select(this).style('height'));
-        return pictSize;            
+        return pictSize;          
     }
-
-    var tasks = [ p1(), p2() ];
-    Promise.all(tasks).then(function(results) {
-        // ここに処理書く
-        console.log(results);
-    });
 
     var pictBox = modalContent
       .append('div')
@@ -173,6 +167,19 @@ function createContents(spot, data, spotName) {
       .on('click', function() {
           createPictPreview(spot[PICT4_LABEL]);
       })
+
+    var tasks = [ p1(), p2() ];
+    Promise.all(tasks).then(function(results) {
+        if (isPictHeightsMax(results)) {
+
+        }
+        console.log(results);
+    });
+
+  function isPictHeightsMax(results) {
+      return results[0].height == pictContainerHeight * magnification 
+              && results[1].height == pictContainerHeight * magnification;
+  }
 
     modalContent
       .append('div')
