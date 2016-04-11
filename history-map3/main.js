@@ -154,10 +154,12 @@ function createContents(spot, data, spotName) {
               .style('max-height', pictContainerHeight * 0.75 + 'px')
 
             d3.select('#picture3')
-              .style('max-height', root.clientHeight * 0.25 + 'px') // ここ式違う
+              // .style('max-height', root.clientHeight * 0.25 + 'px') // ここ式違う
+              .style('max-height', root.clientHeight - pictContainerHeight * 0.75 - pictMargin - 30 + 'px') // ここ式違う
 
             d3.select('#picture4')
-              .style('max-height', pictContainerHeight * 0.25 + 'px') // ここ式違う
+              // .style('max-height', pictContainerHeight * 0.25 + 'px') // ここ式違う
+              .style('max-height', root.clientHeight - pictContainerHeight * 0.75 - pictMargin - 30 + 'px') // ここ式違う
 
         } else if (isPictHeightsMax(results)) {
             d3.select('#main-pict-box')
@@ -175,10 +177,15 @@ function createContents(spot, data, spotName) {
             d3.select('#pict-box')
               .style('display', 'inline-block')
 
+            var pict1Height = parseInt(d3.select('#picture1').style('height'));
+            var pict2Height = parseInt(d3.select('#picture2').style('height'));
+            var mainPictHeight = pict1Height > pict2Height ? pict1Height : pict2Height;
+
             d3.select('#picture3')
               .style({
                   'display': 'block',
-                  'max-width': pictContainerWidth * 0.25 + 'px', // ここ式違う
+                  'max-width': root.clientWidth - (pictContainerWidth * 0.75 + modalPadding + pictMargin) * 2 + 'px',
+                  'max-height': (mainPictHeight - 20) / 2 + 'px',
                   'margin-top': 0,
                   'margin-right': 0
               })
@@ -186,7 +193,8 @@ function createContents(spot, data, spotName) {
             d3.select('#picture4')
               .style({
                   'display': 'block',
-                  'max-width': pictContainerWidth * 0.25 + 'px', // ここ式違う
+                  'max-width': root.clientWidth - (pictContainerWidth * 0.75 + modalPadding + pictMargin) * 2 + 'px',
+                  'max-height': (mainPictHeight - 20) / 2 + 'px',
                   'margin-right': 0
               })
         }
